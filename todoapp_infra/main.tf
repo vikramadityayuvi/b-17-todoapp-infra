@@ -15,6 +15,16 @@ module "virtual_network" {
   
 }
 
+module "virtual_network" {
+    depends_on = [ module.resource_group ]
+    source = "../modules/azurerm_virtual_network"
+    resource_group_name = "rg-todoapp6519"
+    virtual_network_name = "vnet-dhondhu6519"
+    virtual_network_location = "centralindia"
+    address_space = ["10.0.0.0/16"]
+  
+}
+
 
 module "frontend_subnet" {
     depends_on = [ module.virtual_network ]
