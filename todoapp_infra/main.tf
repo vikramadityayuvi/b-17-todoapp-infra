@@ -33,6 +33,16 @@ module "frontend_subnet" {
   
 }
 
+module "birju_subnet" {
+    depends_on = [ module.virtual_network ]
+    source = "../modules/azurerm_subnet"
+    subnet_name = "birju-subnet6519"
+    resource_group_name = "rg-birju"
+    virtual_network_name = "vnet-birju"
+    address_prefixes = ["10.0.60.0/24"]
+  
+}
+
 
 # module "backend_subnet" {
 #     depends_on = [ module.virtual_network ]
