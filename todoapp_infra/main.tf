@@ -18,10 +18,12 @@ module "virtual_network" {
 module "virtual_network" {
     depends_on = [ module.resource_group ]
     source = "../modules/azurerm_virtual_network"
-    resource_group_name = "rg-todoapp6519"
-    virtual_network_name = "vnet-tondupp6519"
+    resource_group_name = "rg-tonduapp6519"
+    virtual_network_name = "vnet-todoapp6519"
     virtual_network_location = "centralindia"
     address_space = ["10.0.0.0/16"]
+  
+}
 
 module "frontend_subnet" {
     depends_on = [ module.virtual_network ]
@@ -40,6 +42,14 @@ module "birju_subnet" {
     resource_group_name = "rg-birju"
     virtual_network_name = "vnet-birju"
     address_prefixes = ["10.0.60.0/24"]
+}
+module "tirju_subnet" {
+    depends_on = [ module.virtual_network ]
+    source = "../modules/azurerm_subnet"
+    subnet_name = "tirju-subnet6519"
+    resource_group_name = "rg-tirju"
+    virtual_network_name = "vnet-tirju"
+    address_prefixes = ["10.0.7.0/24"]
   
 }
 
